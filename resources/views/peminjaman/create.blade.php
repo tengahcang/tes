@@ -8,13 +8,13 @@
         <div class="row justify-content-center">
             <div class="p-5 bg-light rounded-3 border col-xl-6">
                 <div class="mb-3 text-center">
-                    <i class="bi-person-circle fs-1"></i>
+                    <i class="bi bi-box-seam-fill fs-1"></i>
                     <h4>Buat peminjaman</h4>
                 </div>
                 <hr>
                 <div class="row">
-                   
-                        
+
+
                         <input class="form-control @error ('firstName') is-invalid @enderror " type="hidden" name="Nama" id="Nama" value="{{Auth::user()->id}}">
 
                     <div class="mb-3">
@@ -23,15 +23,15 @@
                     <div class="mb-3">
                         <label class="form-label" for="email">Email: {{Auth::user()->email}}</label>
                     </div>
-                        
+
                     <div class=" mb-3">
                         <label for="Event" class="form-label">Event</label>
-                        <input class="form-control @error('Event') is-invalid @enderror" type="text" name="Event" id="Event" value="{{ old('Event') }}"> 
+                        <input class="form-control @error('Event') is-invalid @enderror" type="text" name="Event" id="Event" value="{{ old('Event') }}">
                         @error('Event')
                             <div class="text-danger"><small>{{ $message }}</small></div>
                         @enderror
                     </div>
-                    
+
                     <div class=" mb-3">
                         <label for="Keterangan" class="form-label">Keterangan</label>
                         <input class="form-control @error('Keterangan') is-invalid @enderror" type="textarea" name="Keterangan" id="Keterangan" value="{{ old('Keterangan') }}">
@@ -53,9 +53,9 @@
                             <div class="text-danger"><small>{{ $message }}</small></div>
                         @enderror
                     </div>
-                    
+
                 </div>
-                
+
                 {{-- <div class=" mb-3">
                     <label for="Foto" class="form-label">input File foto</label>
                     <input type="file" class="form-control" name="Foto" id="Foto">

@@ -7,8 +7,8 @@
         <div class="row justify-content-center">
             <div class="p-5 bg-light rounded-3 border col-xl-6">
                 <div class="mb-3 text-center">
-                    <i class="bi-person-circle fs-1"></i>
-                    <h4>tambah barang</h4>
+                    <i class="bi bi-file-earmark-plus-fill fs-1"></i>
+                    <h4>Tambah Barang</h4>
                 </div>
                 <hr>
                 {{-- <div class="row">
@@ -16,9 +16,9 @@
                 </div> --}}
                 <input type="hidden" name="dataid" value="{{$id}}">
                 <div class="col-md-12 mb-3">
-                    <label for="paket" class="form-label">paket</label>
+                    <label for="paket" class="form-label">Paket</label>
                     <select name="paket" id="paket" class="form-select">
-                        <option value="">pilih salah satu</option>
+                        <option value="">Pilih salah satu</option>
                         {{-- <option value="paket1">Paket 1</option>
                         <option value="paket2">Paket 2</option> --}}
                     @foreach ($pakets as $paket)
@@ -56,6 +56,9 @@
                     <div class="col-md-6 d-grid">
                         <button type="submit" class="btn btn-dark btn-lg mt-3"><i class="bi-check-circle me-2"></i> Save</button>
                     </div>
+                    <div class="col-md-6 d-grid">
+                        <a href="{{ route('home') }}" class="btn btn-outline-danger btn-lg mt-3"><i class="bi-arrow-left-circle me-2"></i> Cancel</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -73,8 +76,8 @@
                 @if ($detail->paket_id == $paket->id)
                     {{$detail->barang->nama_barang}}+
                     'barang: '  + '        qty: '+{{$detail->qty}},
-                     
-                    
+
+
                 @endif
                 @endforeach
             ],
