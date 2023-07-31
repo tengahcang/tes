@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
             <div class="p-5 bg-light rounded-3 border col-xl-6">
                 <div class="mb-3 text-center">
-                    <i class="bi-person-circle fs-1"></i>
+                    <i class="bi bi-stickies-fill fs-1"></i>
                     <h4>Buat Laporan</h4>
                 </div>
                 <hr>
@@ -57,53 +57,11 @@
                             <div class="text-danger"><small>{{ $message }}</small></div>
                         @enderror
                     </div>
-                    {{-- <div class="col-md-6 mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input class="form-control" type="text" name="email" id="email" value="" placeholder="Enter Email">
-                        @if ($errors->has('email'))
-                            <span>
-                                <strong>{{ $error }}</strong>
-                            </span>
-                        @endif
-                    </div> --}}
-                    {{-- <div class="col-md-6 mb-3">
-                        <label for="age" class="form-label">Age</label>
-                        <input class="form-control @error('age') is-invalid @enderror" type="text" name="age" id="age" value="{{ old('age') }}" placeholder="Enter Age">
-                        @error('age')
-                            <div class="text-danger"><small>{{ $message }}</small></div>
-                        @enderror
-                    </div>     --}}
-                    {{-- <div class="col-md-6 mb-3">
-                        <label for="age" class="form-label">Age</label>
-                        <input class="form-control" type="text" name="age" id="age" value="" placeholder="Enter Age">
-                        @if ($errors->has('age'))
-                            <span>
-                                <strong>{{ $error }}</strong>
-                            </span>
-                        @endif
-                    </div> --}}
+
                 </div>
-                {{-- <div class="col-md-12 mb-3">
-                    <label for="position" class="form-label">Position</label>
-                    <select name="position" id="position" class="form-select">
-                    @foreach ($positions as $position)
-                        <option value="{{ $position->id }}" {{ old('position') == $position->id ? 'selected' : '' }}>{{ $position->code.' - '.$position->name }}</option>
-                    @endforeach
-                    </select>
-                    @error('position')
-                        <div class="text-danger"><small>{{ $message }}</small></div>
-                    @enderror
-                </div> --}}
-                {{-- <div class="col-md-12 mb-3">
-                    <label for="position" class="form-label">Position</label>
-                    <select name="position" id="position" class="form-select">
-                        @foreach ($positions as $position)
-                            <option value="{{ $position->id }}" {{ old('position') == $position->id ? 'selected' : '' }} > {{ $position->code.' - '.$position->name }}></option>
-                        @endforeach
-                    </select>
-                </div> --}}
+
                 <div class=" mb-3">
-                    <label for="Foto" class="form-label">input File foto</label>
+                    <label for="Foto" class="form-label">Input File foto</label>
                     <input type="file" class="form-control" name="Foto" id="Foto">
                     @error('Foto')
                         <div class="text-danger"><small>{{ $message }}</small></div>

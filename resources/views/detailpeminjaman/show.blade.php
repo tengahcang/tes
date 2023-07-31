@@ -7,7 +7,9 @@
         </div>
         <div class="col-lg-3 col-xl-2">
             <div class="d-grid gap-2">
-                <a class="btn btn-primary" href="{{ route('detailpeminjaman.create',['id'=>$id]) }}"><i class="bi bi-plus"> Tambah Barang</i></a>
+                <a class="btn btn-primary btn-lg" href="{{ route('detailpeminjaman.create',['id'=>$id]) }}">
+                    <i class="bi bi-plus"></i> Tambah Barang
+                </a>
             </div>
         </div>
     </div>
@@ -17,9 +19,9 @@
         <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="dataTable">
             <thead>
                 <tr>
-                    <th>id</th>
-                    <th>barang</th>
-                    <th>jumlah</th>
+                    <th>Id</th>
+                    <th>Barang</th>
+                    <th>Jumlah</th>
                     <th></th>
                 </tr>
             </thead>
