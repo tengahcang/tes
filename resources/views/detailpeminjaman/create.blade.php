@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+@foreach ($detailpakets as $item)
+    {{ $item->barang->nama_barang }}
+@endforeach
 <div class="container-sm mt-5">
     <form action="{{ route('detailpeminjaman.store') }}" method="POST" enctype="multipart/form-data">
 
@@ -52,7 +55,9 @@
 
                 <hr>
                 <div class="row">
-
+                    <div class="col-md-6 d-grid">
+                        <a href="{{ route('detailpeminjaman.show',['detailpeminjaman'=>$id]) }}" class="btn btn-outline-dark btn-lg mt-3"><i class="bi-arrow-left-circle me-2"></i> Cancel</a>
+                    </div>
                     <div class="col-md-6 d-grid">
                         <button type="submit" class="btn btn-dark btn-lg mt-3"><i class="bi-check-circle me-2"></i> Save</button>
                     </div>
@@ -66,20 +71,21 @@
 
 
     <script>
+        // console.log("{{ $detailpakets }}");
+
         const detailpaket = {
             @foreach ($pakets as $paket)
             {{$paket->id}}: [
                 @foreach ($detailpakets as $detail)
-                @if ($detail->paket_id == $paket->id)
-                    {{$detail->barang->nama_barang}}+
-                    'barang: '  + '        qty: '+{{$detail->qty}},
-                     
-                    
-                @endif
+                    @if ($detail->paket_id == $paket->id)
+                        'barang: ' + "{{ $detail->barang->nama_barang }}" + ', qty: ' + {{ $detail->qty }},
+                    @endif
                 @endforeach
             ],
             @endforeach
         };
+
+        console.log(detailpaket);
 
         const paketDropdown = document.getElementById('paket');
         const daftarBarangContainer = document.getElementById('daftarBarang');
@@ -87,6 +93,7 @@
         const qtyInput = document.getElementById('qty');
 
         function tampilkanDaftarBarang(paket) {
+            console.log(detailpaket);
             daftarBarangContainer.innerHTML = '';
             const daftarBarangPaket = detailpaket[paket];
             if (daftarBarangPaket) {
