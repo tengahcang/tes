@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Barang extends Model
 {
     use HasFactory;
-    
+
     public function laporan(){
         return $this->hasMany(Laporan::class);
     }
@@ -16,6 +16,6 @@ class Barang extends Model
         return $this->hasMany(Detail_peminjamans::class);
     }
     public function detailpaket(){
-        return $this->hasMany(Detail_paket::class, 'barang_id');
+        return $this->hasMany(Detail_paket::class);
     }
 }
