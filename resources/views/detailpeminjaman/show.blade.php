@@ -14,7 +14,7 @@
     <hr>
     {{-- <h1>{{$id}}</h1> --}}
     <div class="table-responsive border p-3 rounded-3">
-        <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="employeeTable">
+        <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="dataTable">
             <thead>
                 <tr>
                     <th>id</th>
@@ -42,6 +42,17 @@
 
 
         </table>
+    </div>
+    <div class="row">
+        <div class="col-md-6 d-grid">
+            {{-- <a href="{{ route('home') }}" class="btn btn-dark btn-lg mt-3"><i class="bi-check-circle me-2"></i> Save</a> --}}
+        </div>
+        <div class="col-md-6 d-grid">
+            <a href="{{ route('home') }}" class="btn btn-dark btn-lg mt-3"><i class="bi-check-circle me-2"></i> Save</a>
+        </div>
+        {{-- <div class="col-md-6 d-grid">
+            <button type="submit" class="btn btn-dark btn-lg mt-3"><i class="bi-check-circle me-2"></i> Save</button>
+        </div> --}}
     </div>
 </div>
 @endsection

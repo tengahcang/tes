@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Detail_peminjamans;
 use App\Models\Peminjamans;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -15,7 +16,12 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        //
+        // $data = Detail_peminjamans::all();
+
+        return view('peminjaman.index',[
+            // 'datas1'=>$data,
+            // 'datas2'=>$data2
+        ]);
     }
 
     /**
@@ -44,7 +50,7 @@ class PeminjamanController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        
+
         $laporan = New Peminjamans();
         $laporan->user_id = $request->Nama;
         $laporan->event = $request->Event;
@@ -90,5 +96,19 @@ class PeminjamanController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function getData(Request $request)
+    {
+        $data = Detail_peminjamans::with(['barang','peminjaman', 'peminjaman.user' ]);
+
+    if ($request->ajax()) {
+        return datatables()->of($data)
+            ->addIndexColumn()
+            // ->addColumn('actions', function($employee) {
+            //     return view('employee.actions', compact('employee'));
+            // })
+            ->toJson();
+        }
     }
 }

@@ -34,4 +34,5 @@ Route::group(['middleware'=>'auth'],function(){
     Route::resource('barang',BarangController::class);
     Route::resource('pinjam',PeminjamanController::class);
     Route::resource('detailpeminjaman',DetailPeminjamanController::class);
+    Route::get('getEmployees', [PeminjamanController::class, 'getData'])->name('employees.getData');
 });

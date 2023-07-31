@@ -9,9 +9,9 @@ class Detail_paket extends Model
 {
     use HasFactory;
     public function barang(){
-        return $this->belongsTo(Barang::class, 'barang_id');
+        return $this->belongsTo(Barang::class);
     }
     public function paket(){
-        return $this->belongsTo(Paket::class, 'paket_id');
+        return $this->belongsTo(Paket::class);
     }
 }

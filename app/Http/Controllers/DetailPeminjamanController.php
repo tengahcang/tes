@@ -43,6 +43,7 @@ class DetailPeminjamanController extends Controller
                             // ->select('*')
                             // ->get();
         $detailpakets = Detail_paket::all();
+        // dd($detailpakets->barangs);
         // $barangsWithoutDetailPakets = DB::table('barangs')
         //                                 ->whereNotExists(function ($query) {
         //                                     $query->select(DB::raw(1))
