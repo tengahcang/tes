@@ -34,5 +34,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::resource('barang',BarangController::class);
     Route::resource('pinjam',PeminjamanController::class);
     Route::resource('detailpeminjaman',DetailPeminjamanController::class);
-    Route::get('getEmployees', [PeminjamanController::class, 'getData'])->name('employees.getData');
+    Route::get('getBarang', [DetailPeminjamanController::class, 'getData'])->name('barang.getData');
+    Route::get('getLaporan', [LaporanController::class, 'getData'])->name('laporan.getData');
+    Route::get('getPinjam', [PeminjamanController::class, 'getData'])->name('pinjam.getData');
+    Route::get('exportPdf/{pinjam}',[PeminjamanController::class, 'exportPdf'])->name('pinjam.exportPdf');
 });
