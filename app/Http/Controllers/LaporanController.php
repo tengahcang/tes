@@ -19,9 +19,9 @@ class LaporanController extends Controller
         // $data = DB::table('laporans')
         //             ->select('*')
         //             ->get();
-        $data = Laporan::all();
+        // $data = Laporan::all();
         return view('laporan.index',[
-            'laporan' => $data
+            // 'laporan' => $data
         ]);
     }
 
@@ -100,5 +100,18 @@ class LaporanController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function getData(Request $request)
+    {
+        $data = Laporan::with(['barang','user']);
+
+        if ($request->ajax()) {
+            return datatables()->of($data)
+                ->addIndexColumn()
+                ->addColumn('actions', function($lapor) {
+                    return view('laporan.actions', compact('lapor'));
+                })
+                ->toJson();
+            }
     }
 }

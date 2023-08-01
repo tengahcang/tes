@@ -4,30 +4,31 @@
     <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="dataTable">
         <thead>
             <tr>
+                <th>id</th>
                 <th>nama user</th>
                 <th>email user</th>
                 <th>event</th>
-                <th>keterangan</th>
+                {{-- <th>keterangan</th> --}}
                 <th>tanggal pinjam</th>
                 <th>tanggal kembali</th>
-                <th>barang</th>
-                <th>jumlah</th>
                 <th>status</th>
+                {{-- <th>pid</th> --}}
+                <th></th>
             </tr>
         </thead>
         {{-- @foreach ($datas1 as $data1)
 
                 <tbody>
                     <tr>
-                        <th>{{$data1->peminjaman->user->name}}</th>
-                        <th>{{$data1->peminjaman->user->email}}</th>
-                        <th>{{$data1->peminjaman->event}}</th>
-                        <th>{{$data1->peminjaman->keterangan}}</th>
-                        <th>{{$data1->peminjaman->tanggal_pinjam}}</th>
-                        <th>{{$data1->peminjaman->tanggal_kembali}}</th>
-                        <th>{{$data1->barang->nama_barang}}</th>
-                        <th>{{$data1->jumlah}}</th>
+                        <th>{{$data1->user->name}}</th>
+                        <th>{{$data1->user->email}}</th>
+                        <th>{{$data1->event}}</th>
+
+                        <th>{{$data1->tanggal_pinjam}}</th>
+                        <th>{{$data1->tanggal_kembali}}</th>
+
                         <th>{{$data1->status}}</th>
+                        <th>@include('peminjaman.actions')</th>
                     </tr>
                 </tbody>
 
@@ -42,18 +43,18 @@
         $('#dataTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '/getEmployees',
+            ajax: '/getPinjam',
             columns: [
-                { data: 'peminjaman.user.name', name: 'peminjaman.user.name' },
-                { data: 'peminjaman.user.email', name: 'peminjaman.user.email' },
-                { data: 'peminjaman.event', name: 'peminjaman.event' },
-                { data: 'peminjaman.keterangan', name: 'peminjaman.keterangan' },
-                { data: 'peminjaman.tanggal_pinjam', name: 'peminjaman.tanggal_pinjam' },
-                { data: 'peminjaman.tanggal_kembali', name: 'peminjaman.tanggal_kembali' },
-                { data: 'barang.nama_barang', name: 'barang.nama_barang' },
-                { data: 'jumlah', name: 'jumlah' },
-                { data: 'status', name: 'status' }
+                { data: "id", name: "id", visible: false },
+                { data: 'user.name', name: 'user.name' },
+                { data: 'user.email', name: 'user.email' },
+                { data: 'event', name: 'event' },
+                { data: 'tanggal_pinjam', name: 'tanggal_pinjam' },
+                { data: 'tanggal_kembali', name: 'tanggal_kembali' },
+                { data: 'status', name: 'status' },
+                { data: 'actions', name: 'actions' }
             ],
+            order: [[5, "dsc"]],
         });
     });
 </script>

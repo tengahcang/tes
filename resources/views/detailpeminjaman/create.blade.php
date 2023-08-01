@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-@foreach ($detailpakets as $item)
+{{-- @foreach ($detailpakets as $item)
     {{ $item->barang->nama_barang }}
-@endforeach
+@endforeach --}}
 <div class="container-sm mt-5">
     <form action="{{ route('detailpeminjaman.store') }}" method="POST" enctype="multipart/form-data">
 
@@ -55,15 +55,16 @@
 
                 <hr>
                 <div class="row">
-                    <div class="col-md-6 d-grid">
+                    {{-- <div class="col-md-6 d-grid">
                         <a href="{{ route('detailpeminjaman.show',['detailpeminjaman'=>$id]) }}" class="btn btn-outline-dark btn-lg mt-3"><i class="bi-arrow-left-circle me-2"></i> Cancel</a>
+                    </div> --}}
+                    <div class="col-md-6 d-grid">
+                        <a href="{{ route('detailpeminjaman.show',['detailpeminjaman'=>$id]) }}" class="btn btn-outline-danger btn-lg mt-3"><i class="bi-arrow-left-circle me-2"></i> Cancel</a>
                     </div>
                     <div class="col-md-6 d-grid">
                         <button type="submit" class="btn btn-dark btn-lg mt-3"><i class="bi-check-circle me-2"></i> Save</button>
                     </div>
-                    <div class="col-md-6 d-grid">
-                        <a href="{{ route('home') }}" class="btn btn-outline-danger btn-lg mt-3"><i class="bi-arrow-left-circle me-2"></i> Cancel</a>
-                    </div>
+
                 </div>
             </div>
         </div>

@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Detail_peminjamans;
 use App\Models\Peminjamans;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
+use PDF;
 
 class PeminjamanController extends Controller
 {
@@ -16,8 +18,11 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        // $data = Detail_peminjamans::all();
-
+        // $data = Peminjamans::all();
+        // $data = Peminjamans::select('peminjamans.id as peminjaman_id')
+        // ->join('users', 'peminjamans.user_id', '=', 'users.id')
+        // ->get();
+        // var_dump($data);die();
         return view('peminjaman.index',[
             // 'datas1'=>$data,
             // 'datas2'=>$data2
@@ -79,7 +84,17 @@ class PeminjamanController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = Peminjamans::find($id);
+        // $alat = DB::table('detail_peminjamans')
+        //             ->where('peminjaman_id','=',$id)
+        //             ->get();
+        $alat = Detail_peminjamans::where('peminjaman_id', $id)->get();
+        // var_dump($alat);die();
+        return view('peminjaman.edit',[
+            'datas1'=>$data,
+            'datas2'=>$alat
+        ]);
+
     }
 
     /**
@@ -87,7 +102,15 @@ class PeminjamanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        if ($request->statuspeminjam == 'decline'){
+
+        }else{
+            $employee = Peminjamans::find($id);
+            $employee->status = $request->statuspeminjam;
+            $employee->save();
+            Alert::success('Changed Successfully', 'status Data Changed Successfully.');
+            return redirect()->route('pinjam.edit',['pinjam'=>$id]);
+        }
     }
 
     /**
@@ -95,20 +118,42 @@ class PeminjamanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
     }
+
 
     public function getData(Request $request)
     {
-        $data = Detail_peminjamans::with(['barang','peminjaman', 'peminjaman.user' ]);
+        // $data = DB::table('peminjamans')->select('peminjamans.id as peminjaman_id')->join('users', 'peminjamans.user_id', 'users.id');
+        // $data = Peminjamans::select('peminjamans.id as peminjaman_id')
+        // ->join('users', 'peminjamans.user_id', '=', 'users.id')
+        // ->get();
+        $data = Peminjamans::with('user');
+        // dd($data);
 
-    if ($request->ajax()) {
-        return datatables()->of($data)
-            ->addIndexColumn()
-            // ->addColumn('actions', function($employee) {
-            //     return view('employee.actions', compact('employee'));
-            // })
-            ->toJson();
-        }
+        if ($request->ajax()) {
+            return datatables()->of($data)
+                ->addIndexColumn()
+                ->addColumn('actions', function($data1) {
+                    return view('peminjaman.actions', compact('data1'));
+                })
+                ->toJson();
+            }
+    }
+
+    public function exportPdf(string $id)
+    {
+        // var_dump($id);die();
+        $data = Peminjamans::find($id);
+        $alat = Detail_peminjamans::where('peminjaman_id', $id)->get();
+        // var_dump($employees->product->name_product);die();
+
+        $pdf = PDF::loadView('export.export_pdf',[
+            'datas1'=>$data,
+            'datas2'=>$alat
+        ]);
+
+        return $pdf->download('F-02.pdf');
+
     }
 }

@@ -27,6 +27,7 @@ class DetailPeminjamanController extends Controller
         //     // 'datas'=>$data,
         //     'id'=>$id
         // ]);
+        return view('detailpeminjaman.index');
     }
 
     /**
@@ -125,7 +126,11 @@ class DetailPeminjamanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $employee = Detail_peminjamans::find($id);
+            $employee->status = $request->statusalat;
+            $employee->save();
+            Alert::success('Changed Successfully', 'status alat Data Changed Successfully.');
+            return redirect()->route('pinjam.edit',['pinjam'=>$employee->peminjaman_id]);
     }
 
     /**
@@ -134,5 +139,18 @@ class DetailPeminjamanController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function getData(Request $request)
+    {
+        $data = Detail_peminjamans::with(['barang','peminjaman', 'peminjaman.user' ]);
+
+        if ($request->ajax()) {
+            return datatables()->of($data)
+                ->addIndexColumn()
+                // ->addColumn('actions', function($employee) {
+                //     return view('employee.actions', compact('employee'));
+                // })
+                ->toJson();
+            }
     }
 }

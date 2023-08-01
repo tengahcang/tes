@@ -28,7 +28,7 @@
     </div> --}}
     <hr>
     <div class="table-responsive border p-3 rounded-3">
-        <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="employeeTable">
+        <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="dataTable">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -38,7 +38,7 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
+            {{-- <tbody>
                 @foreach ($laporan as $lapor)
                     <tr>
                         <td>{{ $lapor->id }}</td>
@@ -48,9 +48,37 @@
                         <td>@include('laporan.actions')</td>
                     </tr>
                 @endforeach
-            </tbody>
-            
+            </tbody> --}}
+
         </table>
     </div>
 </div>
 @endsection
+@push('scripts')
+<script type="module">
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '/getLaporan',
+            columns: [
+                { data: "id", name: "id", visible: false },
+                { data: 'user.name', name: 'user.name' },
+                { data: 'barang.nama_barang', name: 'barang.nama_barang' },
+                { data: 'descripsi', name: 'descripsi' },
+                { data: 'actions', name: 'actions' },
+                // { data: 'peminjaman.user.email', name: 'peminjaman.user.email' },
+                // { data: 'peminjaman.event', name: 'peminjaman.event' },
+                // { data: 'peminjaman.keterangan', name: 'peminjaman.keterangan' },
+                // { data: 'peminjaman.tanggal_pinjam', name: 'peminjaman.tanggal_pinjam' },
+                // { data: 'peminjaman.tanggal_kembali', name: 'peminjaman.tanggal_kembali' },
+                // { data: 'barang.nama_barang', name: 'barang.nama_barang' },
+                // { data: 'jumlah', name: 'jumlah' },
+                // { data: 'status', name: 'status' }
+            ],
+        });
+    });
+</script>
+
+
+@endpush
